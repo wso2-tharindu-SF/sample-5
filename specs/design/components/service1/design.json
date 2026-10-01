@@ -1,0 +1,16 @@
+{
+  "name": "service1",
+  "type": "service",
+  "version": "0.1.0",
+  "language": "Ballerina",
+  "buildpack": "docker",
+  "appPath": "service1",
+  "entrypoint": "deployment/service",
+  "exposure": "internet",
+  "dependencies": [
+    { "kind": "component", "name": "service2", "description": "Fetches the current catalog of scored records to compute the average." }
+  ],
+  "description": "Public-facing service that asks service2 for its current catalog and returns the average score — the sum of every record's score divided by the record count, discarding any remainder — as a whole number. The same computation runs regardless of which catalog service2 is currently serving; there is no separate path or result per catalog. Logs how many records it handled per request. Requests to a path this service does not serve return a structured 404 body. Does not store or modify any record itself, and documents no response for service2's catalog being empty.",
+  "stories": [1, 2],
+  "skillsPinned": ["openapi-conventions", "ballerina"]
+}
