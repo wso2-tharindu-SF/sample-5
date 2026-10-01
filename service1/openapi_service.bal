@@ -27,7 +27,7 @@ service / on ep0 {
         foreach service2:Record r in records {
             total += r.score;
         }
-        int average = total / records.length();
+        int average = records.length() == 0 ? 0 : total / records.length();
         return {average: average};
     }
 
